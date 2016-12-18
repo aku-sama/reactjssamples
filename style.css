@@ -1,0 +1,81 @@
+.article {
+  width: 450px;
+  padding: 0 auto;
+}
+
+.author-info {
+ display: flex;
+ align-items: center;
+}
+
+.author-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.author-image {
+  border-radius: 50%;
+  margin: 5px;
+  border-width: medium;
+  border-color: gray;
+}
+
+.article-title {
+  font-size: 20px;
+  font-weight: bold;
+  width: 100% ;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  vertical-align: middle;
+  text-align: center;
+  color: gray;
+}
+
+.article-text {
+  font-size: 16px;
+  font-family: sans-serif;
+  align-content: stretch;
+}
+.contacts {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.search-field {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.contacts-list {
+  padding: 0;
+  width: 100%;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  font-family: sans-serif;
+  width: 100%;
+  padding: 5px;
+  border-bottom: 1px dotted grey;
+}
+
+.contact-image {
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.contact-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+.contact-email {
+  font-size: 16px;
+  font-style: italic;
+  color: gray;
+}
+.contact-address {
+  font-size: 16px;
+  color: grey;
+}

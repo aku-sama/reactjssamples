@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Contact search</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+  </head>
+  <body>
+    <div id='content'></div>
+
+    <script type="text/babel">
+
+    var CONTACTS = [
+      {
+        id: 1,
+        name: 'Ivan Sidorov',
+        phoneNumber: '+79998889990',
+        image:'https://freeiconshop.com/files/edd/person-flat.png',
+        address: 'street 001, NY',
+        email: 'test1@email.com',
+        isOpened: false
+      },{
+        id: 2,
+        name: 'Oleg Petrov',
+        phoneNumber: '+79007008080',
+        image: 'http://openplus.ca/images/photo.jpg',
+        address: 'street 002, NY',
+        email: 'test2@email.com',
+        isOpened: false
+      },{
+        id: 3,
+        name: 'Darya Arhipova',
+        phoneNumber: '+230080809763',
+        image: 'http://www.noviasalcedo.es/wp-content/uploads/2016/05/person-girl-flat.png',
+        address: 'street 003, NY',
+        email: 'test3@email.com',
+        isOpened: false
+      },{
+        id: 4,
+        name: 'Donat Enikeev',
+        phoneNumber: '+56964548919871',
+        image: 'https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png',
+        address: 'street 004, NY',
+        email: 'test4@email.com',
+        isOpened: false
+      }
+    ];
+
+    var Contact = React.createClass({
+      render: function() {
+        return(<li className = "contact">
+                  <img className = "contact-image" src = {this.props.image} width="60px" height="60px" />
+                  <div className = "contact-info">
+                    <div className = "contact-name"> {this.props.name} </div>
+                    <div className = "contact-phone"> {this.props.phoneNumber} </div>
+                    <div id='email' className = "contact-email"> {this.props.email} </div>
+                    <div className = "contact-address"> {this.props.address} </div>
+                  </div>
+              </li>);
+      }
+    });
+
+    var ContactsList = React.createClass({
+      getInitialState: function() {
+        return {
+          displayedContacts: CONTACTS
+        };
+      },
+
+      handleSearch: function(event) {
+          var searchQuery =  event.target.value.toLowerCase();
+          var displayedContacts = CONTACTS.filter(function(el){
+              var searchValue =el.name.toLowerCase();
+              return searchValue.indexOf(searchQuery) !== -1;
+        });
+
+        console.log(displayedContacts);
+
+        this.setState({
+            displayedContacts: displayedContacts
+        });
+      },
+
+      expandFunction: function(event,) {
+        console.log(event);
+        this.isOpened=!this.isOpened;
+        console.log(this.isOpened);
+      },
+
+      render: function() {
+        return (
+          <div className = "contacts">
+            <input className = "search-field" type="text" onChange = {this.handleSearch}/>
+            <ul className = "contacts-list"  onClick={this.expandFunction}>
+              {
+                this.state.displayedContacts.map( function(el) {
+                  if(el.isOpened){
+                  return <Contact
+                              name = {el.name}
+                              key = {el.id}
+                              phoneNumber = {el.phoneNumber}
+                              image = {el.image}
+                              email = {el.email}
+                              address = {el.address}
+                        />;
+                      }
+                  else {
+                    return <Contact
+                                name = {el.name}
+                                key = {el.id}
+                                phoneNumber = {el.phoneNumber}
+                                image = {el.image}
+                          />;
+                  }
+                })
+              }
+            </ul>
+          </div>
+        );
+      }
+    });
+
+    ReactDOM.render(
+      <ContactsList/>,
+      document.getElementById('content')
+    );
+
+    </script>
+  </body>
+</html>

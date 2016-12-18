@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<header>
+  <meta charset="utf-8"/>
+  <title>Home work 02 Hello Word</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+</header>
+
+<body>
+  <div id='content'/>
+
+  <script type="text/babel">
+
+      var DEFAULT_TEXT='Stranger';
+
+      var InputField = React.createClass({
+
+        getInitialState: function(){
+          return {
+            displayedText: DEFAULT_TEXT
+          };
+        },
+
+        handleInput: function(event){
+          var inputText = event.target.value;
+          if(inputText.length == 0)
+            inputText = DEFAULT_TEXT;
+
+          var displayedText= inputText;
+
+          console.log(displayedText);
+
+          this.setState({
+            displayedText: displayedText
+          });
+        },
+
+        render: function(){
+          return(
+            <div className="input-container">
+              <input className="input-field" type="text" onChange={this.handleInput}/>
+              <div className="input-result">Hello, {this.state.displayedText}</div>
+            </div>
+          );
+        }
+      });
+
+      ReactDOM.render(
+        <InputField/>,
+        document.getElementById('content')
+      );
+
+  </script>
+
+
+</body>
+</html>
